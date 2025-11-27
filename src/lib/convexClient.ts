@@ -3,7 +3,7 @@
  */
 
 interface PickedPark {
-  id: string;
+  _id: string;
   name: string;
   address?: string;
   photoUrl?: string;

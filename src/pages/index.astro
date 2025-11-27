@@ -69,7 +69,7 @@ const convexUrl = getConvexUrl();
                   target="_blank"
                   rel="noopener noreferrer"
                   class="maps-link"
-                  data-park-id={park.id}
+                  data-park-id={park._id}
                 >
                   Open in Google Maps →
                 </a>
@@ -150,7 +150,7 @@ const convexUrl = getConvexUrl();
                   target="_blank"
                   rel="noopener noreferrer"
                   class="maps-link"
-                  data-park-id="${park.id}"
+                  data-park-id="${park._id}"
                 >
                   Open in Google Maps →
                 </a>
@@ -173,20 +173,15 @@ const convexUrl = getConvexUrl();
       }
 
       // Track visits when clicking "Open in Google Maps"
-      async function trackVisit(parkId) {
-        try {
-          await fetch(`${convexUrl}/api/mutation`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              path: "parks:incrementVisitCount",
-              args: { parkId },
-              format: "json",
-            }),
-          });
-        } catch (err) {
-          console.error("Failed to track visit:", err);
-        }
+      // Uses sendBeacon for reliable fire-and-forget tracking that survives navigation
+      function trackVisit(parkId) {
+        const payload = JSON.stringify({
+          path: "actions/trackVisit:trackVisit",
+          args: { parkId },
+          format: "json",
+        });
+        const blob = new Blob([payload], { type: "application/json" });
+        navigator.sendBeacon(`${convexUrl}/api/action`, blob);
       }
 
       // Attach click handlers to maps links

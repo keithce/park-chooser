@@ -109,9 +109,9 @@ export const count = query({
 });
 
 /**
- * Increment the visit count for a park (when user clicks "Open in Google Maps").
+ * Increment the visit count for a park (internal, called by trackVisit action).
  */
-export const incrementVisitCount = mutation({
+export const incrementVisitCount = internalMutation({
   args: { parkId: v.id("parks") },
   handler: async (ctx, args) => {
     const park = await ctx.db.get(args.parkId);
