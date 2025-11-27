@@ -8,6 +8,7 @@ import type { Id } from "../_generated/dataModel";
 export interface PickedPark {
   _id: string;
   name: string;
+  customName?: string;
   address?: string;
   photoUrl?: string;
   placeId: string;
@@ -73,6 +74,7 @@ export const pickPark = action({
     return {
       _id: selectedPark._id,
       name: selectedPark.name,
+      customName: selectedPark.customName,
       address: selectedPark.address,
       photoUrl,
       placeId: selectedPark.placeId,

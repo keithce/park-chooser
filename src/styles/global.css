@@ -127,6 +127,15 @@ main {
   padding: 1.75rem 2rem 2rem;
 }
 
+.park-custom-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-sunset);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.375rem;
+}
+
 .park-name {
   font-family: "Fraunces", Georgia, serif;
   font-size: 1.75rem;

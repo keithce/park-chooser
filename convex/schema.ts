@@ -6,6 +6,7 @@ export default defineSchema({
   parks: defineTable({
     placeId: v.string(),
     name: v.string(),
+    customName: v.optional(v.string()), // personal identifier or nickname for the park
     address: v.optional(v.string()),
     photoRefs: v.array(v.string()), // Google Places photo references
     lastSynced: v.number(), // timestamp
