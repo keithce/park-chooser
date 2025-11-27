@@ -11,100 +11,114 @@ const srqParks: Array<{
   customName?: string;
 }> = [
   {
-    placeId: "ChIJyzMTAQBB0YURWJRJG6H_u6Y",
+    placeId: "ChIJyzMVWABBw4gR0LdJG3JubGw",
     name: "Locklear Park",
-    address: "821 S Lockwood Ridge Rd, Sarasota, FL 34237",
-    // customName: "The Big Slide Park", // example: add your custom name here
+    address: "821 S Lockwood Ridge Rd, Sarasota, FL 34237, USA",
+    customName: "Trail Park",
   },
   {
-    placeId: "ChIJK0pSLKRB0YUR7c_1B0iFQoA",
+    placeId: "ChIJndUG4ipGw4gROWz8SnOmZj8",
     name: "Rothenbach Park",
-    address: "8650 Bee Ridge Rd, Sarasota, FL 34241",
+    address: "8650 Bee Ridge Rd, Sarasota, FL 34241, USA",
+    customName: "Deer Park",
   },
   {
-    placeId: "ChIJYQKqL5tA0YURuIh0XHGB2oo",
+    placeId: "ChIJ70rJA_w5w4gRrx0l1ukJBDc",
     name: "Waterside Park",
-    address: "7300 34th St W, Sarasota, FL 34243",
+    address: "7500 Island Cove Terrace, Lakewood Ranch, FL 34240, USA",
+    customName: "Splash Pad",
   },
   {
-    placeId: "ChIJN1t_tDeuEmsRUsoyG83frY4",
+    placeId: "ChIJ7wa-IxRAw4gRnwt6LGL2yeM",
     name: "Bayfront Park",
-    address: "5 Bayfront Dr, Sarasota, FL 34236",
+    address: "5 Bayfront Dr, Sarasota, FL 34236, USA",
   },
   {
-    placeId: "ChIJF6_HJKRB0YURiNRpUq2UGs",
+    placeId: "ChIJA29Zl5ZBw4gRgCgd4IJ52O8",
     name: "Avion Park",
-    address: "1640 N Tuttle Ave, Sarasota, FL 34237",
+    address: "436 N Pompano Ave Drive, Sarasota, FL 34237, USA",
+    customName: "Blue Park",
   },
   {
-    placeId: "ChIJk6_HJKRB0YURiNRpUq2UGs",
+    placeId: "ChIJ7YsXEMxBw4gRchvcb9pd3to",
     name: "Pompano Trailhead",
-    address: "7302 Proctor Rd, Sarasota, FL 34241",
+    address: "601 S Pompano Ave, Sarasota, FL 34237, USA",
   },
   {
-    placeId: "ChIJP6_HJKRB0YURiNRpUq2UGs",
+    placeId: "ChIJxYJeVmlAw4gRNvmToAxA6pA",
     name: "Laurel Park",
-    address: "509 N Orange Ave, Sarasota, FL 34236",
+    address: "Laurel Park, Sarasota, FL 34236, USA",
+    customName: "Toy Park",
   },
   {
-    placeId: "ChIJQ6_HJKRB0YURiNRpUq2UGs",
+    placeId: "ChIJY2rFgrZBw4gRSmVrESIb7tQ",
     name: "Red Rock Park",
-    address: "4001 Red Rock Way, Sarasota, FL 34231",
+    address: "3987 Camino Real, Sarasota, FL 34231, USA",
   },
   {
-    placeId: "ChIJR6_HJKRB0YURiNRpUq2UGs",
+    placeId: "ChIJV0yi5XdBw4gR8Mnd9UrwnlA",
     name: "Pioneer Park",
-    address: "1260 12th St, Sarasota, FL 34236",
+    address: "1260 12th St, Sarasota, FL 34236, USA",
+    customName: "Aggie Park",
   },
   {
-    placeId: "ChIJS6_HJKRB0YURiNRpUq2UGs",
+    placeId: "ChIJn61r9WVAw4gRXOJtD8DSQt4",
     name: "Payne Park",
-    address: "2050 Adams Ln, Sarasota, FL 34237",
+    address: "2010 Adams Ln, Sarasota, FL 34237, USA",
+    customName: "Ducky Park",
   },
   {
-    placeId: "ChIJT6_HJKRB0YURiNRpUq2UGs",
+    placeId: "ChIJYSdb7qhBw4gRJyUw9vbao9Y",
     name: "Ashton Trailhead",
-    address: "4420 Ashton Rd, Sarasota, FL 34233",
+    address: "4281 Ashton Rd, Sarasota, FL 34233, USA",
+    customName: "Orange Park",
   },
   {
-    placeId: "ChIJU6_HJKRB0YURiNRpUq2UGs",
+    placeId: "ChIJTziSvydBw4gR7i_qxadnwpQ",
     name: "Sarasota Springs Trailhead",
-    address: "5801 Honore Ave, Sarasota, FL 34233",
+    address: "4012 Webber St, Sarasota, FL 34232, USA",
+    customName: "Tree Park",
   },
   {
-    placeId: "ChIJV6_HJKRB0YURiNRpUq2UGs",
+    placeId: "ChIJ8SekLo9Gw4gR81Gftma1QvU",
     name: "Twin Lakes Park",
-    address: "6700 Clark Rd, Sarasota, FL 34241",
+    address: "6700 Clark Rd, Sarasota, FL 34241, USA",
+    customName: "Baseball Park",
   },
   {
-    placeId: "ChIJW6_HJKRB0YURiNRpUq2UGs",
+    placeId: "ChIJQQfiSiVHw4gRJCg2DzEVcho",
     name: "Colonial Oaks Park",
-    address: "5300 Colonial Oaks Blvd, Sarasota, FL 34232",
+    address: "5300 Colonial Oaks Blvd, Sarasota, FL 34232, USA",
+    customName: "Airplane Park",
   },
   {
-    placeId: "ChIJX6_HJKRB0YURiNRpUq2UGs",
-    name: "Potter Park",
-    address: "8587 Potter Park Dr, Sarasota, FL 34238",
+    placeId: "ChIJL8MDKe1Dw4gRjnOVD3yyv2k",
+    name: "Potter Park Drive",
+    address: "Potter Park Dr, Florida 34238, USA",
   },
   {
-    placeId: "ChIJY6_HJKRB0YURiNRpUq2UGs",
+    placeId: "ChIJZc7_aZBBw4gRU5GoOod0gic",
     name: "Phillippi Estate Park",
-    address: "5500 S Tamiami Trail, Sarasota, FL 34231",
+    address: "5500 S Tamiami Trl, Sarasota, FL 34231, USA",
+    customName: "Dock Park",
   },
   {
-    placeId: "ChIJZ6_HJKRB0YURiNRpUq2UGs",
-    name: "Arlington Recreational Park",
-    address: "2650 Waldemere St, Sarasota, FL 34239",
+    placeId: "ChIJhRwCTPZAw4gROrb2GkpgkGQ",
+    name: "Arlington Park Sarasota",
+    address: "2650 Waldemere St, Sarasota, FL 34239, USA",
+    customName: "Turtle Park",
   },
   {
-    placeId: "ChIJa6_HJKRB0YURiNRpUq2UGs",
+    placeId: "ChIJ08zZpRpBw4gRiDJBlBXfAHw",
     name: "Bee Ridge Park",
-    address: "4430 S Lockwood Ridge Rd, Sarasota, FL 34231",
+    address: "4430 S Lockwood Ridge Rd, Sarasota, FL 34231, USA",
+    customName: "Sand Park",
   },
   {
-    placeId: "ChIJb6_HJKRB0YURiNRpUq2UGs",
+    placeId: "ChIJD0uXVl0_w4gRNkYBalb2Fgw",
     name: "Kensington Park",
-    address: "4561 Kensington Park Blvd, Sarasota, FL 34243",
+    address: "Kensington Park, FL 34235, USA",
+    customName: "Green Park",
   },
 ];
 
@@ -188,6 +202,52 @@ export const clearSyncState = mutation({
       await ctx.db.delete(state._id);
     }
     return { cleared: syncState.length };
+  },
+});
+
+/**
+ * Clean up duplicate parks that were created with incorrect placeIds.
+ * Run with: npx convex run seed:cleanupDuplicates
+ */
+export const cleanupDuplicates = mutation({
+  args: {},
+  handler: async (ctx) => {
+    // These are the incorrect placeIds that were in the original seed file
+    const incorrectPlaceIds = [
+      "ChIJyzMTAQBB0YURWJRJG6H_u6Y",
+      "ChIJK0pSLKRB0YUR7c_1B0iFQoA",
+      "ChIJYQKqL5tA0YURuIh0XHGB2oo",
+      "ChIJN1t_tDeuEmsRUsoyG83frY4",
+      "ChIJF6_HJKRB0YURiNRpUq2UGs",
+      "ChIJk6_HJKRB0YURiNRpUq2UGs",
+      "ChIJP6_HJKRB0YURiNRpUq2UGs",
+      "ChIJQ6_HJKRB0YURiNRpUq2UGs",
+      "ChIJR6_HJKRB0YURiNRpUq2UGs",
+      "ChIJS6_HJKRB0YURiNRpUq2UGs",
+      "ChIJT6_HJKRB0YURiNRpUq2UGs",
+      "ChIJU6_HJKRB0YURiNRpUq2UGs",
+      "ChIJV6_HJKRB0YURiNRpUq2UGs",
+      "ChIJW6_HJKRB0YURiNRpUq2UGs",
+      "ChIJX6_HJKRB0YURiNRpUq2UGs",
+      "ChIJY6_HJKRB0YURiNRpUq2UGs",
+      "ChIJZ6_HJKRB0YURiNRpUq2UGs",
+      "ChIJa6_HJKRB0YURiNRpUq2UGs",
+      "ChIJb6_HJKRB0YURiNRpUq2UGs",
+    ];
+
+    let deleted = 0;
+    for (const placeId of incorrectPlaceIds) {
+      const park = await ctx.db
+        .query("parks")
+        .withIndex("by_placeId", (q) => q.eq("placeId", placeId))
+        .unique();
+      if (park) {
+        await ctx.db.delete(park._id);
+        deleted++;
+      }
+    }
+
+    return { deleted, message: `Deleted ${deleted} duplicate parks` };
   },
 });
 
