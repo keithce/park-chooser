@@ -6,7 +6,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "sync:dev": "npx convex run actions/syncParks:syncParks '{\"force\": true}'",
+    "sync:prod": "npx convex run --prod actions/syncParks:syncParks '{\"force\": true}'"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.17",
