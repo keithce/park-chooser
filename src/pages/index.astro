@@ -62,6 +62,9 @@ const convexUrl = getConvexUrl();
                 </div>
               )}
               <div class="park-info">
+                {park.customName && (
+                  <p class="park-custom-name">{park.customName}</p>
+                )}
                 <h2 class="park-name">{park.name}</h2>
                 {park.address && <p class="park-address">{park.address}</p>}
                 <a
@@ -143,6 +146,7 @@ const convexUrl = getConvexUrl();
                   : ""
               }
               <div class="park-info">
+                ${park.customName ? `<p class="park-custom-name">${park.customName}</p>` : ""}
                 <h2 class="park-name">${park.name}</h2>
                 ${park.address ? `<p class="park-address">${park.address}</p>` : ""}
                 <a

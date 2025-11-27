@@ -5,6 +5,7 @@
 interface PickedPark {
   _id: string;
   name: string;
+  customName?: string;
   address?: string;
   photoUrl?: string;
   placeId: string;
