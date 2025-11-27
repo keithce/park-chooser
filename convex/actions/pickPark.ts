@@ -6,7 +6,7 @@ import { getPhotoUrl } from "../lib/googleMaps";
 import type { Id } from "../_generated/dataModel";
 
 export interface PickedPark {
-  id: string;
+  _id: string;
   name: string;
   address?: string;
   photoUrl?: string;
@@ -31,7 +31,7 @@ export const pickPark = action({
       } else {
         throw new Error(
           "No parks found. Run `npx convex run seed:seedParks` to add sample parks, " +
-          "or set GOOGLE_MAPS_API_KEY to sync from Google Places."
+            "or set GOOGLE_MAPS_API_KEY to sync from Google Places."
         );
       }
     }
@@ -53,8 +53,7 @@ export const pickPark = action({
 
     // If all parks have been picked recently (fewer parks than constraint),
     // allow picking from all parks
-    const poolToPickFrom =
-      eligibleParks.length > 0 ? eligibleParks : allParks;
+    const poolToPickFrom = eligibleParks.length > 0 ? eligibleParks : allParks;
 
     // Randomly select a park
     const randomIndex = Math.floor(Math.random() * poolToPickFrom.length);
@@ -72,7 +71,7 @@ export const pickPark = action({
     }
 
     return {
-      id: selectedPark._id,
+      _id: selectedPark._id,
       name: selectedPark.name,
       address: selectedPark.address,
       photoUrl,
@@ -80,4 +79,3 @@ export const pickPark = action({
     };
   },
 });
-

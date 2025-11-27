@@ -10,6 +10,7 @@
 
 import type * as actions_pickPark from "../actions/pickPark.js";
 import type * as actions_syncParks from "../actions/syncParks.js";
+import type * as actions_trackVisit from "../actions/trackVisit.js";
 import type * as lib_googleMaps from "../lib/googleMaps.js";
 import type * as parks from "../parks.js";
 import type * as picks from "../picks.js";
@@ -24,6 +25,7 @@ import type {
 declare const fullApi: ApiFromModules<{
   "actions/pickPark": typeof actions_pickPark;
   "actions/syncParks": typeof actions_syncParks;
+  "actions/trackVisit": typeof actions_trackVisit;
   "lib/googleMaps": typeof lib_googleMaps;
   parks: typeof parks;
   picks: typeof picks;
