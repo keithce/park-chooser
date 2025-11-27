@@ -1,10 +1,7 @@
 /**
  * Google Maps API helpers for fetching list items and place details.
  *
- * Note: The Google Maps Data API for lists is not publicly available.
- * Instead, we use a workaround: scrape the shared list page or manually
- * seed parks. For production, you'd integrate with the Places API for
- * place details and photos.
+ * Uses the Places API (New) for Text Search and Place Details.
  */
 
 const PLACES_API_BASE = "https://places.googleapis.com/v1/places";
@@ -14,6 +11,90 @@ export interface PlaceDetails {
   name: string;
   address?: string;
   photoRefs: string[];
+}
+
+export interface ParkEntry {
+  name: string;
+  searchQuery: string; // Name + location for Text Search
+}
+
+/**
+ * SRQ Parks list from Google Maps.
+ * These are Sarasota, FL area parks from the shared list.
+ */
+export const SRQ_PARKS: ParkEntry[] = [
+  { name: "Locklear Park", searchQuery: "Locklear Park Sarasota FL" },
+  { name: "Rothenbach Park", searchQuery: "Rothenbach Park Sarasota FL" },
+  { name: "Waterside Park", searchQuery: "Waterside Park Sarasota FL" },
+  { name: "Bayfront Park", searchQuery: "Bayfront Park Sarasota FL" },
+  { name: "Avion Park", searchQuery: "Avion Park Sarasota FL" },
+  { name: "Pompano Trailhead", searchQuery: "Pompano Trailhead Sarasota FL" },
+  { name: "Laurel Park", searchQuery: "Laurel Park Sarasota FL" },
+  { name: "Red Rock Park", searchQuery: "Red Rock Park Sarasota FL" },
+  { name: "Pioneer Park", searchQuery: "Pioneer Park Sarasota FL" },
+  { name: "Payne Park", searchQuery: "Payne Park Sarasota FL" },
+  { name: "Ashton Trailhead", searchQuery: "Ashton Trailhead Sarasota FL" },
+  {
+    name: "Sarasota Springs Trailhead",
+    searchQuery: "Sarasota Springs Trailhead Sarasota FL",
+  },
+  { name: "Twin Lakes Park", searchQuery: "Twin Lakes Park Sarasota FL" },
+  { name: "Colonial Oaks Park", searchQuery: "Colonial Oaks Park Sarasota FL" },
+  { name: "Potter Park", searchQuery: "Potter Park Sarasota FL" },
+  {
+    name: "Phillippi Estate Park",
+    searchQuery: "Phillippi Estate Park Sarasota FL",
+  },
+  {
+    name: "Arlington Recreational Park",
+    searchQuery: "Arlington Recreational Park Sarasota FL",
+  },
+  { name: "Bee Ridge Park", searchQuery: "Bee Ridge Park Sarasota FL" },
+  { name: "Kensington Park", searchQuery: "Kensington Park Sarasota FL" },
+];
+
+/**
+ * Search for a place using Text Search API (New) and return the place ID.
+ */
+export async function searchPlace(
+  query: string,
+  apiKey: string
+): Promise<string | null> {
+  const url = "https://places.googleapis.com/v1/places:searchText";
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Goog-Api-Key": apiKey,
+        "X-Goog-FieldMask": "places.id,places.displayName",
+      },
+      body: JSON.stringify({
+        textQuery: query,
+        maxResultCount: 1,
+      }),
+    });
+
+    if (!response.ok) {
+      console.error(`Text Search API error for "${query}": ${response.status}`);
+      const errorText = await response.text();
+      console.error("Error details:", errorText);
+      return null;
+    }
+
+    const data = await response.json();
+
+    if (data.places && data.places.length > 0) {
+      return data.places[0].id;
+    }
+
+    console.warn(`No results found for "${query}"`);
+    return null;
+  } catch (error) {
+    console.error(`Error searching for "${query}":`, error);
+    return null;
+  }
 }
 
 /**
@@ -69,26 +150,3 @@ export function getPhotoUrl(
   // Places API (New) photo media endpoint
   return `https://places.googleapis.com/v1/${photoName}/media?maxWidthPx=${maxWidth}&key=${apiKey}`;
 }
-
-/**
- * Hardcoded park place IDs from the Google Maps list.
- * In a real scenario, you would either:
- * 1. Use the Maps Data API (if available)
- * 2. Scrape the shared list page
- * 3. Manually maintain this list
- *
- * These are example Seattle-area parks - replace with actual place IDs from your list.
- */
-export const PARK_PLACE_IDS = [
-  "ChIJBYpG4FcVkFQRMKMj6aGu6HQ", // Discovery Park
-  "ChIJVTPokywQkFQRmtVoG6H_u6Y", // Gas Works Park
-  "ChIJ7cv00DwVkFQROiNRpUq2UGs", // Golden Gardens Park
-  "ChIJc-wLChYUkFQRHUhQ9p3fqbA", // Volunteer Park
-  "ChIJAx7UL8IVkFQR86Iqc-fUncc", // Carkeek Park
-  "ChIJvz-Jz4oUkFQRj6t0XHGB2oo", // Cal Anderson Park
-  "ChIJzQMx6vBBkFQR0iFQoAi7Hxk", // Seward Park
-  "ChIJtRkkqIJqkFQRLsOKQroRdQQ", // Marymoor Park
-  "ChIJyWEHuEmuEmsRm9hTkapTCrk", // Green Lake Park
-  "ChIJN1t_tDeuEmsRUsoyG83frY4", // Kerry Park
-];
-

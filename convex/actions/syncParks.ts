@@ -1,11 +1,12 @@
 "use node";
 
-import { action, internalMutation } from "../_generated/server";
+import { action } from "../_generated/server";
 import { v } from "convex/values";
 import { internal } from "../_generated/api";
 import {
   fetchPlaceDetails,
-  PARK_PLACE_IDS,
+  searchPlace,
+  SRQ_PARKS,
   type PlaceDetails,
 } from "../lib/googleMaps";
 
@@ -14,7 +15,7 @@ const SYNC_INTERVAL_MS = 24 * 60 * 60 * 1000;
 
 /**
  * Action to sync parks from Google Places API.
- * This fetches details for each park and upserts them into the database.
+ * Uses Text Search to find each park by name, then fetches full details.
  */
 export const syncParks = action({
   args: {
@@ -39,18 +40,36 @@ export const syncParks = action({
       return { synced: false, count: 0 };
     }
 
-    console.log(`Syncing ${PARK_PLACE_IDS.length} parks...`);
+    console.log(`Syncing ${SRQ_PARKS.length} parks from SRQ Parks list...`);
 
     const parks: PlaceDetails[] = [];
 
-    // Fetch details for each park (with some rate limiting)
-    for (const placeId of PARK_PLACE_IDS) {
+    // For each park in the list, search for it and fetch details
+    for (const parkEntry of SRQ_PARKS) {
+      console.log(`Searching for: ${parkEntry.name}`);
+
+      // First, find the place ID using Text Search
+      const placeId = await searchPlace(parkEntry.searchQuery, apiKey);
+
+      if (!placeId) {
+        console.warn(`Could not find place ID for: ${parkEntry.name}`);
+        continue;
+      }
+
+      console.log(`Found place ID: ${placeId} for ${parkEntry.name}`);
+
+      // Then fetch full details
       const details = await fetchPlaceDetails(placeId, apiKey);
+
       if (details) {
         parks.push(details);
+        console.log(
+          `Fetched details for: ${details.name} (${details.photoRefs.length} photos)`
+        );
       }
+
       // Small delay to avoid rate limiting
-      await new Promise((resolve) => setTimeout(resolve, 100));
+      await new Promise((resolve) => setTimeout(resolve, 200));
     }
 
     // Upsert parks into the database
@@ -68,8 +87,7 @@ export const syncParks = action({
       lastSyncedAt: now,
     });
 
-    console.log(`Synced ${parks.length} parks`);
+    console.log(`Synced ${parks.length} parks successfully`);
     return { synced: true, count: parks.length };
   },
 });
-
